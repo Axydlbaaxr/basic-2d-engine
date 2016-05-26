@@ -1,0 +1,61 @@
+PStoXPM: Postscript to XPM conversion utility
+---------------------------------------------
+
+PStoXPM reads in a file written in a simplified PostScript-like format, applies optional rotation, scaling, and translation transforms, then prints on standard output a corresponding XPM file.
+
+DEVELOPMENT
+===========
+
+PStoXPM was developed on a Sony Vaio laptop running KUbuntu 8.04 (Hardy Heron), using the GNU C++ compiler with Eclipse.
+
+USAGE
+=====
+
+PStoXPM is invoked by typing
+
+	./PStoXPM <command line arguments>
+
+at a command prompt. Command-line arguments are all optional and can be entered in any order. The command-line arguments supported by PStoXPM, as well as the default values that will be used if the argument is not specified, are as follows:
+
+-f <filename> (hw1.ps)
+	Name of input PostScript-like file
+
+-s <real number> (1.0)
+	Scaling factor to be applied. (w.r.t. (0,0))
+
+-r <integer> (0)
+	Degrees to rotate image.  (w.r.t. (0,0))
+
+-m <integer> (0)
+	Pixels to translate image in X direction.
+
+-n <integer> (0)
+	Pixels to translate image in Y direction.
+
+-a <integer> (0)
+	Lowest X coordinate to be displayed.
+
+-b <integer> (0)
+	Lowest Y coordinate to be displayed.
+
+-c <integer> (0)
+	Greatest X coordinate to be displayed.
+
+-d <integer> (0)
+	Greatest Y coordinate to be displayed.
+
+Input files must contain a '%%%BEGIN' delimeter, at the beginning of some line, and an '%%%END' delimeter at the beginning of some line afterwards. All text outside of these delimeters will be ignored. All commands are between the two delimeters.
+
+PStoXPM at this point supports only one command:
+
+(x1) (y1) (x2) (y2) Line
+	Draws a black line between (x1, y1) and (x2, y2).
+
+Syntactically malformed commands will cause an error to be displayed, but will not cause an exit.
+
+Please remember that XPM and Postscript treat Y coordinates differently. The (0,0) point in XPM is at the upper-left, while in PostScript it is at the lower-left.
+
+BUILD INSTRUCTIONS
+==================
+
+Type 'make' at a command line in the 'build' directory (under the source directory). Type 'make clean' to clean.
